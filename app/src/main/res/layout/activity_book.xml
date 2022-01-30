@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="save"
+    android:background="@drawable/backgrnd"
+    tools:context=".BookActivity">
+
+    <EditText
+        android:id="@+id/bookname"
+        android:layout_width="311dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:hint="Book Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:drawableStart="@drawable/bookicon"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568" />
+
+    <EditText
+        android:id="@+id/authorname"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="Author Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:drawableStart="@drawable/authoricn"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookname"
+        app:layout_constraintVertical_bias="0.184" />
+
+    <EditText
+        android:id="@+id/readingdate"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:hint="Reading Date MM/YYYY"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:drawableStart="@drawable/dateicon2"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorname"
+        app:layout_constraintVertical_bias="0.213" />
+
+    <ImageView
+        android:id="@+id/bookImage"
+        android:layout_width="204dp"
+        android:layout_height="306dp"
+        android:onClick="selectBookImage"
+        app:layout_constraintBottom_toTopOf="@+id/bookname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/selectbookimage3" />
+
+    <ImageView
+        android:id="@+id/savebt"
+        android:layout_width="88dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.764"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readingdate"
+        app:layout_constraintVertical_bias="0.453"
+        app:srcCompat="@drawable/savebtn1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
