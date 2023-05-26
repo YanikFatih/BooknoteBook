@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 
 import com.example.booknotebook.databinding.ActivityMainBinding;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,17 +54,23 @@ public class MainActivity extends AppCompatActivity {
 
             SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Books", MODE_PRIVATE,null);
 
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM books",null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM books ORDER BY id desc",null);
 
+            int imageIndex = cursor.getColumnIndex("image");
             int bookNameIndex = cursor.getColumnIndex("bookName");
+            int authorNameIndex =  cursor.getColumnIndex("authorName");
+            int readingDateIndex = cursor.getColumnIndex("readingDate");
             int idIndex = cursor.getColumnIndex("id");
 
             while (cursor.moveToNext()){
 
+                byte[] image = cursor.getBlob(imageIndex);
                 String name = cursor.getString(bookNameIndex);
+                String author = cursor.getString(authorNameIndex);
+                String date = cursor.getString(readingDateIndex);
                 int id = cursor.getInt(idIndex);
 
-                Book book = new Book(name, id);
+                Book book = new Book(image, id, name, author, date);
 
                 bookArrayList.add(book);
 

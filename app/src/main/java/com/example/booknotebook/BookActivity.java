@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.booknotebook.databinding.ActivityBookBinding;
+import com.example.booknotebook.databinding.ActivityMainBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
@@ -62,12 +64,16 @@ public class BookActivity extends AppCompatActivity {
             binding.authorname.setText("");
             binding.readingdate.setText("");
             binding.savebt.setVisibility(View.VISIBLE);
+            binding.deletebtn.setVisibility(View.INVISIBLE);
+            binding.savechangesbtn.setVisibility(View.INVISIBLE);
             binding.bookImage.setImageResource(R.drawable.selectbookimage3);
 
         } else{
 
             int bookId = intent.getIntExtra("bookId",0);
             binding.savebt.setVisibility(View.INVISIBLE);
+            binding.deletebtn.setVisibility(View.VISIBLE);
+            binding.savechangesbtn.setVisibility(View.VISIBLE);
 
             try {
 
@@ -112,7 +118,6 @@ public class BookActivity extends AppCompatActivity {
 
         try {
 
-
             bookable.execSQL("CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY, bookName VARCHAR, authorName VARCHAR, readingDate VARCHAR, image BLOB)");
 
             String SqlString = "INSERT INTO books(bookName, authorName, readingDate, image) VALUES(?, ?, ?, ?)";
@@ -132,7 +137,45 @@ public class BookActivity extends AppCompatActivity {
         Intent intent = new Intent(BookActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        Toast.makeText(getApplicationContext(),"Book saved",Toast.LENGTH_LONG).show();
 
+    }
+
+    public void delete(View view){
+        String bookName = binding.bookname.getText().toString();
+        String SqlStr = "DELETE FROM Books WHERE bookName = ?";
+        SQLiteStatement sqLiteStatement = bookable.compileStatement(SqlStr);
+        sqLiteStatement.bindString(1, bookName);
+        Snackbar.make(view,"Delete this book?",Snackbar.LENGTH_INDEFINITE).setAction("Delete", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sqLiteStatement.execute();
+                Intent intent = new Intent(BookActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Book deleted",Toast.LENGTH_LONG).show();
+            }
+        }).show();
+
+        /*String bookName = binding.bookname.getText().toString();
+
+        try {
+
+            //bookable.execSQL("DELETE FROM Books WHERE bookName = ?");
+            String SqlStr = "DELETE FROM Books WHERE bookName = ?";
+            SQLiteStatement sqLiteStatement = bookable.compileStatement(SqlStr);
+            sqLiteStatement.bindString(1, bookName);
+            sqLiteStatement.execute();
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+
+        Intent intent = new Intent(BookActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(),"Book deleted",Toast.LENGTH_LONG).show();*/
     }
 
     public Bitmap makeImageSmallSize(Bitmap image, int maxSize){

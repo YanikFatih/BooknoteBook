@@ -5,7 +5,7 @@
     android:id="@+id/saveButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bckgrndmain"
+    android:background="@drawable/backgrndmain"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView

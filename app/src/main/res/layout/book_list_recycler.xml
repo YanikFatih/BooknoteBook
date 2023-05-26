@@ -1,21 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="1dp"
     android:layout_marginTop="1dp"
+    android:layout_marginRight="1dp"
+    android:background="@drawable/custom_textview_3"
     >
 
-    <TextView
-        android:id="@+id/bookListRecycler"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/rcyclerBookImage"
+        android:layout_width="55dp"
         android:layout_height="80dp"
-        android:background="@drawable/custom_textview_2"
-        android:text="Test"
-        android:textAlignment="center"
-        android:textSize="45sp">
-        android:textColor="@color/black"
-    </TextView>
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:background="@drawable/custom_textview_3" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/bookListNameRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/rcyclerBookImage"
+        android:background="@drawable/custom_textview_2"
+        android:paddingTop="7dp"
+        android:text="Türklerin Tarihi"
+        android:textAlignment="center"
+        android:textSize="18sp">
+        android:textColor="@color/black"</TextView>
+
+    <TextView
+        android:id="@+id/bookListAuthorRecycler"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/bookListNameRecycler"
+        android:layout_toRightOf="@id/rcyclerBookImage"
+        android:background="@drawable/custom_textview_2"
+        android:paddingTop="9dp"
+        android:text="İlber Ortaylı"
+        android:textAlignment="center"
+        android:textSize="15sp">
+        android:textColor="@color/black"</TextView>
+
+    <TextView
+        android:id="@+id/bookListDateRecycler"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/bookListNameRecycler"
+        android:layout_toRightOf="@id/bookListAuthorRecycler"
+        android:background="@drawable/custom_textview_2"
+        android:paddingTop="11dp"
+        android:text="04/2023"
+        android:textAlignment="center"
+        android:textSize="12sp">
+        android:textColor="@color/black"</TextView>
+
+</RelativeLayout>

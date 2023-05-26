@@ -1,6 +1,8 @@
 package com.example.booknotebook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +34,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
     @Override
     public void onBindViewHolder(@NonNull BookHolder holder, int position) {
 
-        holder.binding.bookListRecycler.setText(bookArrayList.get(position).name);
+        Bitmap bitmapImg= BitmapFactory.decodeByteArray(bookArrayList.get(position).image, 0 , bookArrayList.get(position).image.length);
+        holder.binding.rcyclerBookImage.setImageBitmap(bitmapImg);
+        holder.binding.bookListNameRecycler.setText(bookArrayList.get(position).name);
+        holder.binding.bookListAuthorRecycler.setText(bookArrayList.get(position).author);
+        holder.binding.bookListDateRecycler.setText(bookArrayList.get(position).readingDate);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
